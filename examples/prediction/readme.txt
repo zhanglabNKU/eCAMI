@@ -1,6 +1,6 @@
 The input is a fasta file with sequences to be annotated for an EC or CAZyme family.
 
-The output has one single file mimicing a fasta format (multi-family proteins can occur multiple times/lines in this file):
+The output has one single file mimicing a fasta format (multi-family proteins can occur multiple times in multiple lines in this file):
 >protein_name    fam_name:group_number    subfam_name_of_the_group:subfam_name_count
 matching kmers(start position in the query sequence)
 
