@@ -11,7 +11,8 @@ import numpy as np
 import os
 import datetime
 import re
-import psutil,argparse,sys
+#import psutil
+import argparse,sys
 from multiprocessing import Pool 
 
 
@@ -128,7 +129,6 @@ def get_cluster_number(file_name,fam_kmer_dict,output_dir,n_mer,piece_number,pro
             kmer_message=fam_kmer_dict[each_fam][1]
             kmer_label=fam_kmer_dict[each_fam][0]
             each_cluster_score=[]
-            each_cluster_number_score=[]
             each_same_kmer=[]
             for j in range(len(all_cluster_kmer)):
                 score=0
@@ -140,15 +140,15 @@ def get_cluster_number(file_name,fam_kmer_dict,output_dir,n_mer,piece_number,pro
                     number_score+=each_cluster_kmer[k]
                 score+=len(same_kmer)
 
-                each_cluster_score.append(score)
-                each_cluster_number_score.append(number_score)
+                each_cluster_score.append([j,score,number_score])
                 each_same_kmer.append(same_kmer)
-            max_similary_cluster_label=np.argmax(each_cluster_score)
-            if each_cluster_number_score[max_similary_cluster_label]>=beta and each_cluster_score[max_similary_cluster_label]>=important_n_mer_number:
-                sort_fam.append([each_cluster_score[max_similary_cluster_label],each_cluster_number_score[max_similary_cluster_label],each_fam])
-                selected_fam_dict[each_fam]=[each_cluster_score[max_similary_cluster_label],\
-                                  each_cluster_number_score[max_similary_cluster_label],each_same_kmer[max_similary_cluster_label],\
-                                  kmer_message[max_similary_cluster_label],kmer_label[max_similary_cluster_label]]
+            each_cluster_score=sorted(each_cluster_score,key=(lambda x:x[2]),reverse=True)
+            each_cluster_score=sorted(each_cluster_score,key=(lambda x:x[1]),reverse=True)
+            if each_cluster_score[0][2]>=beta and each_cluster_score[0][1]>=important_n_mer_number:
+                sort_fam.append([each_cluster_score[0][1],each_cluster_score[0][2],each_fam])
+                selected_fam_dict[each_fam]=[each_cluster_score[0][1]],\
+                                  each_cluster_score[0][2],each_same_kmer[each_cluster_score[0][0]],\
+                                  kmer_message[each_cluster_score[0][0]],kmer_label[each_cluster_score[0][0]]
         if len(sort_fam)==0:
             continue
         sort_fam=sorted(sort_fam,key=(lambda x:x[1]),reverse=True)
