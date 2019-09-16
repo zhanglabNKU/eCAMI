@@ -49,8 +49,8 @@ python prediction.py -help
 protein_name    fam_name:group_number    subfam_name_of_the_group:subfam_name_count
 matching kmers(start position in the query sequence)
 For example:
->Q8DVN0|2.7.2.11	    2.7.2.-:1	     2.7.2.11:26
-ACDEADFGH(21),HCDEADFGH(100)
+>AIJ19564.1|GH5_4|3.2.1.4	GH5:102	GH5_4:15|3.2.1.4:3
+SVRIPVTW(82),RIPVTWMG(84),PVTWMGHI(86),VTWMGHIG(87),IINIHHDG(124),VLNEWNQV(210),NRLMVAVH(259),
 ```
 
 ### Clustering: 
