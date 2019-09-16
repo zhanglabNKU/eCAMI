@@ -30,7 +30,7 @@ For example:
 ```
 python prediction.py -input examples/prediction/input/test.faa -kmer_db CAZyme -output examples/prediction/output/new-output.txt
 ```
-> The test.faa in the `examples/prediction/input` folder will be processed by comparing to the pre-computed k_mer peptides (the k_mer library) in the `CAZyme` folder. You will get the prediction results named `new-output.txt` in the `examples/prediction/output` folder. You can compare it with the `output.txt` that is already there.<br>
+> The test.faa in the `examples/prediction/input` folder will be processed by comparing to the pre-computed k_mer peptides (the k_mer library) in the `CAZyme` folder. You will get the prediction results named `new-output.txt` in the `examples/prediction/output` folder. You can compare it with the `test_pred_cluster_labels.txt` that is already there.<br>
 * In addition, other options for prediction are also available:<br>
   * `-k_mer`: the length of the k_mer peptide to be extracted from the query for comparison against the k_mer peptide library; the length must be the same as the length of the k_mers in the k_mer peptide library (default=8) <br>
   * `-jobs`: the number of CPU processors to use (default=8) <br>
@@ -49,8 +49,8 @@ python prediction.py -help
 protein_name    fam_name:group_number    subfam_name_of_the_group:subfam_name_count
 matching kmers(start position in the query sequence)
 For example:
->Q8DVN0|2.7.2.11	    2.7.2.-:1	     2.7.2.11:26
-ACDEADFGH(21),HCDEADFGH(100)
+>AIJ19564.1|GH5_4|3.2.1.4	GH5:102	GH5_4:15|3.2.1.4:3
+SVRIPVTW(82),RIPVTWMG(84),PVTWMGHI(86),VTWMGHIG(87),IINIHHDG(124),VLNEWNQV(210),NRLMVAVH(259),
 ```
 
 ### Clustering: 
