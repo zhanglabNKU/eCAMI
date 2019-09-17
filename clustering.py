@@ -389,7 +389,7 @@ def arg_parser(args):
     #Folders and files:
     parser = argparse.ArgumentParser(description='The input parameters for the classification technology')
     parser.add_argument('-output_dir',     default="examples/clustering/output/GH5",type=str,        help="Change output directory for both clustering results and n_mer message for prediction")
-    parser.add_argument('-input', default='data_new/GT74.faa',     type=str,                 help="Define the fasta file name")
+    parser.add_argument('-input', default='examples/clustering/input/GH5.faa',     type=str,                 help="Define the fasta file name")
 
    
     ####################################
