@@ -129,7 +129,7 @@ def get_cluster_number(file_name,fam_kmer_dict,output_dir,n_mer,piece_number,pro
             kmer_message=fam_kmer_dict[each_fam][1]
             kmer_label=fam_kmer_dict[each_fam][0]
             each_cluster_score=[]
-            each_same_kmer=[]
+
             for j in range(len(all_cluster_kmer)):
                 score=0
                 number_score=0
@@ -140,8 +140,8 @@ def get_cluster_number(file_name,fam_kmer_dict,output_dir,n_mer,piece_number,pro
                     number_score+=each_cluster_kmer[k]
                 score+=len(same_kmer)
                 if score:
-                    each_cluster_score.append([j,score,number_score])
-                    each_same_kmer.append(same_kmer)
+                    each_cluster_score.append([j,score,number_score,same_kmer])
+
             if len(each_cluster_score)==0:
                 continue
             each_cluster_score=sorted(each_cluster_score,key=(lambda x:x[2]),reverse=True)
@@ -149,7 +149,7 @@ def get_cluster_number(file_name,fam_kmer_dict,output_dir,n_mer,piece_number,pro
             if each_cluster_score[0][2]>=beta and each_cluster_score[0][1]>=important_n_mer_number:
                 sort_fam.append([each_cluster_score[0][1],each_cluster_score[0][2],each_fam])
                 selected_fam_dict[each_fam]=[each_cluster_score[0][1]],\
-                                  each_cluster_score[0][2],each_same_kmer[each_cluster_score[0][0]],\
+                                  each_cluster_score[0][2],each_cluster_score[0][3],\
                                   kmer_message[each_cluster_score[0][0]],kmer_label[each_cluster_score[0][0]]
         if len(sort_fam)==0:
             continue
