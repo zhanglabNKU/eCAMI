@@ -139,9 +139,11 @@ def get_cluster_number(file_name,fam_kmer_dict,output_dir,n_mer,piece_number,pro
                 for k in temp_same_kmer:
                     number_score+=each_cluster_kmer[k]
                 score+=len(same_kmer)
-
-                each_cluster_score.append([j,score,number_score])
-                each_same_kmer.append(same_kmer)
+                if score:
+                    each_cluster_score.append([j,score,number_score])
+                    each_same_kmer.append(same_kmer)
+            if len(each_cluster_score)==0:
+                continue
             each_cluster_score=sorted(each_cluster_score,key=(lambda x:x[2]),reverse=True)
             each_cluster_score=sorted(each_cluster_score,key=(lambda x:x[1]),reverse=True)
             if each_cluster_score[0][2]>=beta and each_cluster_score[0][1]>=important_n_mer_number:
