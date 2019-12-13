@@ -97,18 +97,14 @@ def write_line(selected_fam_message,temp_protein_string):
     kmer_index_dict={}
     for each_kmer in temp_same_kmer:
         index=find_all(each_kmer,temp_protein_string)
-        kmer_index_dict[np.min(index)]=[each_kmer,index]
+        for each_index in index:
+            kmer_index_dict[each_index]=each_kmer
+#        kmer_index_dict[np.min(index)]=[each_kmer,index]
     sorted_kmer_index_dict=sorted(kmer_index_dict.items(),key=lambda x:x[0])
     for each_member in sorted_kmer_index_dict:
-        string_line+=each_member[1][0]
-        string_line+='('
-        index=each_member[1][1]
-        for m in range(len(index)):
-            if m==len(index)-1:
-                string_line+=str(index[m])
-            else:
-                string_line+=str(index[m])+','
-        string_line+=')'+','
+        string_line+=each_member[1]
+        string_line+='('+str(each_member[0])+')'+','
+
     string_line+='\n'
     return string_line
 
