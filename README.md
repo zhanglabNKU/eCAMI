@@ -7,6 +7,12 @@
 ```
 >unique_sequence_ID followed by a “|” 
 ```
+### Citation<br>
+eCAMI: simultaneous classification and motif identification for enzyme annotation.
+Xu J, Zhang H, Zheng J, Dovoedo P, Yin Y.
+Bioinformatics. 2019 Dec 3. pii: btz908. doi: 10.1093/bioinformatics/btz908. [Epub ahead of print]
+PMID: 31794006
+
 ### Install<br>
 ```
 git clone https://github.com/zhanglabNKU/eCAMI.git
