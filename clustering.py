@@ -293,21 +293,27 @@ def write_cluster_kmer_file(cluster_kmer_number,union_cluster,familyname,protein
         cluster_message=Counter(cluster_message)
         cluster_message=sorted(cluster_message.items(),key = lambda x:x[1],reverse = True)
         all_cluster_message.append(cluster_message)
-    current_path=os.getcwd()
+
     all_output_dir_name=output_dir.split('/')
     while '' in all_output_dir_name:
         all_output_dir_name.remove('')
+    if len(all_output_dir_name)>0:
+        temp_all_output_dir_name=os.path.abspath('/'.join(all_output_dir_name))
+        all_output_dir_name=temp_all_output_dir_name.split('/')
+    while '' in all_output_dir_name:
+        all_output_dir_name.remove('')    
     for i in range(len(all_output_dir_name)):
         if i==0:
-            temp_dir_list=os.listdir(current_path)
+            temp_dir_list=os.listdir('/')
             if all_output_dir_name[i] not in temp_dir_list:
                 os.mkdir(all_output_dir_name[i])
         else:
-            temp_dir_name='/'.join(all_output_dir_name[0:i])
+            temp_dir_name='/'+'/'.join(all_output_dir_name[0:i])
+
             temp_dir_list=os.listdir(temp_dir_name)
             if all_output_dir_name[i] not in temp_dir_list:
                 os.mkdir(temp_dir_name+'/'+all_output_dir_name[i])
-    temp_output_dir='/'.join(all_output_dir_name)     
+    temp_output_dir='/'+'/'.join(all_output_dir_name)     
     Dir_list=os.listdir(temp_output_dir)
     if 'kmer_for_each_cluster' not in Dir_list:
         os.mkdir(temp_output_dir+'/kmer_for_each_cluster')
@@ -336,21 +342,31 @@ def write_cluster_kmer_file(cluster_kmer_number,union_cluster,familyname,protein
 
 def writeclusterfile(union_cluster,uncluster_label,protein_name,protein_string,output_dir,fasta_extension):
 #    filename=database_dir+'/'+familyname+fasta_extension
-    current_path=os.getcwd()
+
     all_output_dir_name=output_dir.split('/')
     while '' in all_output_dir_name:
         all_output_dir_name.remove('')
+    if len(all_output_dir_name)>0:
+        temp_all_output_dir_name=os.path.abspath('/'.join(all_output_dir_name))
+        all_output_dir_name=temp_all_output_dir_name.split('/')
+    while '' in all_output_dir_name:
+        all_output_dir_name.remove('')
+
     for i in range(len(all_output_dir_name)):
         if i==0:
-            temp_dir_list=os.listdir(current_path)
+            temp_dir_list=os.listdir('/')
+
             if all_output_dir_name[i] not in temp_dir_list:
                 os.mkdir(all_output_dir_name[i])
         else:
-            temp_dir_name='/'.join(all_output_dir_name[0:i])
+            temp_dir_name='/'+'/'.join(all_output_dir_name[0:i])
+
             temp_dir_list=os.listdir(temp_dir_name)
             if all_output_dir_name[i] not in temp_dir_list:
+
                 os.mkdir(temp_dir_name+'/'+all_output_dir_name[i])
-    temp_output_dir='/'.join(all_output_dir_name)     
+
+    temp_output_dir='/'+'/'.join(all_output_dir_name)     
     Dir_list=os.listdir(temp_output_dir)
     if 'fasta_for_each_cluster' not in Dir_list:
         os.mkdir(temp_output_dir+'/fasta_for_each_cluster')
@@ -431,6 +447,7 @@ def ram():
 if __name__ == "__main__":
     args = arg_parser(sys.argv[1:])
     inputs=args.input
+    inputs=os.path.abspath(inputs)
     inputs=inputs.split('/')
     database_dir='/'.join(inputs[0:len(inputs)-1])
     temp_name=inputs[-1].split('.')
