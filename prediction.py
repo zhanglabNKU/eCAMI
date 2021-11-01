@@ -28,8 +28,10 @@ def read_file(database_dir,input_fasta_file):
     new_text={}
 
     for i in range(len(text)):
-        if '>' in text[i]:
-            proteinname.append(text[i])
+            if ' ' in text[i]:
+                proteinname.append(text[i].split(' ')[0])
+            else:
+                proteinname.append(text[i])
         else:
             if '>' not in text[i] and '>' in text[i-1]:
                 new_text[proteinname[len(proteinname)-1]]=text[i]
