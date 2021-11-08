@@ -28,6 +28,7 @@ def read_file(database_dir,input_fasta_file):
     new_text={}
 
     for i in range(len(text)):
+        if '>' in text[i]:
             if ' ' in text[i]:
                 proteinname.append(text[i].split(' ')[0])
             else:
