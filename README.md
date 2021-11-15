@@ -15,7 +15,7 @@ PMID: 31794006
 
 ### Install<br>
 ```
-git clone https://github.com/zhanglabNKU/eCAMI.git
+git clone https://github.com/yinlabniu/eCAMI.git
 cd eCAMI/
 
 * install required python packages
